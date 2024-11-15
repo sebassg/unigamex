@@ -14,8 +14,9 @@ export default function RegisterSportForm() {
   const [formData, setFormData] = useState({
     sportName: '',
     category: 'Individual',
-    maxParticipants: 2, // Cambié a 2 para que pase la validación
+    maxParticipants: 2, 
     status: 'Activo',
+    participants: []
   });
 
   const [errors, setErrors] = useState<Errors>({});
@@ -50,6 +51,7 @@ export default function RegisterSportForm() {
         category: 'Individual',
         maxParticipants: 2,
         status: 'Activo',
+        participants: []
       });
     } catch (error) {
       if (error instanceof z.ZodError) {
