@@ -2,22 +2,21 @@
 import { useState, useEffect, FormEvent } from 'react';
 
 export default function FormRegisterSportStudent() {
-  // Estado para almacenar los datos del formulario
+ 
   const [formData, setFormData] = useState({
     student: '',
     sport: ''
   });
 
-  // Estado para manejar los errores de validación
   const [errors, setErrors] = useState<{ student?: string; sport?: string }>({});
 
-  // Estado para manejar la carga de estudiantes y deportes
+
   const [students, setStudents] = useState<{ firstName: string, lastName: string, email: string, status: string, idNumber: number, career: string, birthDate: Date, password: string }[]>([]);
   const [sports, setSports] = useState<{ sportName: string, category: string, maxParticipants: number, status: string, participants: number[], sportId: string }[]>([]);
 
-  // Efecto que se ejecuta al montar el componente
+
   useEffect(() => {
-    // Lógica para cargar estudiantes y deportes desde el almacenamiento local
+    
     const storedUsers = typeof window !== 'undefined' ? localStorage.getItem('users') : null;
     const users = storedUsers ? JSON.parse(storedUsers) : [];
     const storedSports = JSON.parse(localStorage.getItem('sports') || '[]');
@@ -26,12 +25,12 @@ export default function FormRegisterSportStudent() {
     setSports(storedSports);
   }, []);
 
-  // Función para manejar el envío del formulario
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setErrors({});
 
-    // Validación de campos
+
     if (!formData.student) {
       setErrors((prev) => ({ ...prev, student: 'Debe seleccionar un estudiante' }));
       return;
@@ -42,32 +41,29 @@ export default function FormRegisterSportStudent() {
       return;
     }
 
-    // Encontrar el deporte seleccionado
+
     const selectedSport = sports.find(sport => sport.sportName === formData.sport);
 
     if (selectedSport) {
-      // Comprobar si el deporte ya está lleno
+    
       if (selectedSport.participants.length >= selectedSport.maxParticipants) {
         setErrors((prev) => ({ ...prev, sport: 'El deporte ya está lleno' }));
         return;
       }
 
-      // Comprobar si el estudiante ya está inscrito
+   
       if (selectedSport.participants.includes(Number(formData.student))) {
         setErrors((prev) => ({ ...prev, student: 'Este estudiante ya está inscrito en este deporte' }));
         return;
       }
 
-      // Agregar el estudiante al deporte
       selectedSport.participants.push(Number(formData.student));
 
-      // Actualizar los deportes en el almacenamiento local
       const updatedSports = sports.map(sport => 
         sport.sportName === formData.sport ? selectedSport : sport
       );
       localStorage.setItem('sports', JSON.stringify(updatedSports));
-      
-      // Reseteamos el formulario después del envío
+
       setFormData({ student: '', sport: '' });
       alert('Estudiante registrado exitosamente');
     }
@@ -102,7 +98,7 @@ export default function FormRegisterSportStudent() {
             {errors.student && <p className="text-red-500 text-xs mt-1">{errors.student}</p>}
           </div>
 
-          {/* Select de deportes */}
+      
           <div className="mb-4">
             <label htmlFor="sport" className="block text-sm font-medium text-gray-700">Seleccionar Deporte</label>
             <select

@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import RegisterUserForm from '@/app/ui/register/RegisterForm'; // Asegúrate de tener este componente
+import RegisterUserForm from '@/app/ui/register/RegisterForm';
 
 type User = {
   firstName: string;
   lastName: string;
-  birthDate: string; // Formato ISO: "YYYY-MM-DD"
+  birthDate: string;
   career: string;
   email: string;
 };
@@ -15,11 +15,11 @@ export default function UsersList() {
   const [users, setUsers] = useState<User[]>([]);
   const [showForm, setShowForm] = useState(false);
 
+ 
   useEffect(() => {
     const storedUsers = typeof window !== 'undefined' ? localStorage.getItem('users') : null;
     if (storedUsers) {
-      const parsedUsers: User[] = JSON.parse(storedUsers);
-      setUsers(parsedUsers);
+      setUsers(JSON.parse(storedUsers));
     }
   }, []);
 
@@ -29,21 +29,20 @@ export default function UsersList() {
 
   const handleFormClose = () => {
     setShowForm(false);
-    // Actualiza la lista de usuarios después de registrar uno nuevo
+    // Al cerrar el formulario, se vuelve a cargar la lista de usuarios
     const storedUsers = typeof window !== 'undefined' ? localStorage.getItem('users') : null;
     if (storedUsers) {
-      const parsedUsers: User[] = JSON.parse(storedUsers);
-      setUsers(parsedUsers);
+      setUsers(JSON.parse(storedUsers));
     }
   };
 
   const calculateAge = (birthDate: string): number => {
     const birth = new Date(birthDate);
     const today = new Date();
-    const age = today.getFullYear() - birth.getFullYear();
+    let age = today.getFullYear() - birth.getFullYear();
     const monthDifference = today.getMonth() - birth.getMonth();
     if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birth.getDate())) {
-      return age - 1;
+      age -= 1;
     }
     return age;
   };
@@ -87,14 +86,16 @@ export default function UsersList() {
       ) : (
         <>
           {users.length === 0 ? (
-            <p className="text-gray-600 text-lg">No hay usuarios registrados en este momento.</p>
+            <div className="flex justify-center items-center w-full">
+              <p className="text-gray-600 text-lg">No hay usuarios registrados en este momento.</p>
+            </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
               {users.map((user, index) => (
                 <div
                   key={index}
                   className="bg-white shadow-md rounded-lg p-8 border border-gray-200 hover:shadow-lg transition-shadow"
-                  style={{ height: '220px' }} // Tamaño fijo para que se vean más grandes
+                  style={{ height: '220px' }}
                 >
                   <h2 className="text-xl font-semibold text-blue-600 mb-2">
                     {user.firstName} {user.lastName}
