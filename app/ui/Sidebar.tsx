@@ -29,6 +29,14 @@ const Sidebar: React.FC = () => {
               Registrarse a un deporte 
             </Link>
           </li>
+
+          <li className="mb-4">
+            <Link href="/auth/reporte-sport" className="text-gray-300 hover:text-white">
+              Reporte
+            </Link>
+          </li>
+          
+          
           
           
         </ul>
