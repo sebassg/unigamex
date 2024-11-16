@@ -1,7 +1,8 @@
+import Reporte from "@/app/ui/ReporteSport"
 export default function PageReporteSport() {
     return(
         <>
-        <h1>aqui lo de informe de deporte</h1>
+        <Reporte></Reporte>
         </>
     )
 }
