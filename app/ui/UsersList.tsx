@@ -76,12 +76,7 @@ export default function UsersList() {
       {showForm ? (
         <>
           <RegisterUserForm />
-          <button
-            onClick={handleFormClose}
-            className="mt-4 px-4 py-2 bg-gray-500 text-white font-medium rounded-lg shadow hover:bg-gray-600 focus:ring-2 focus:ring-gray-400 focus:outline-none"
-          >
-            Cerrar
-          </button>
+          
         </>
       ) : (
         <>

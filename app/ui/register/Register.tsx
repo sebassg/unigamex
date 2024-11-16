@@ -11,7 +11,7 @@ type FormErrors = {
   [key: string]: string | undefined;
 };
 
-export default function RegisterForm() {
+export default function Register() {
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -52,7 +52,7 @@ export default function RegisterForm() {
       
       users.push(newUser);
       localStorage.setItem('users', JSON.stringify(users));
-
+      
       console.log('Formulario enviado con éxito:', formData);
       setIdError('');
       setIsSuccessModalOpen(true);  // Mostrar el modal de éxito
@@ -85,31 +85,19 @@ export default function RegisterForm() {
   };
 
   return (
-    <>
-  
-
-   <div className='flex'>
-   <button className='	' >
-   <Link href="/auth/sport" className=" hover:text-blue-600">
-   <svg className="mb-[40rem] ml-[-20rem] w-10 h-10 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 6l-6 6 6 6" />
-    </svg>  
-        </Link>
-    
-   </button>
-    <div className="bg-white p-6 py-6 rounded-lg shadow-md w-[50rem] max-w-md">
+    <div className="bg-white p-6 py-6 rounded-lg shadow-md w-full max-w-md">
       <h2 className="text-2xl font-semibold text-center text-gray-800 mb-0">Registro</h2>
+      
       <form onSubmit={handleSubmit}>
         <InputField 
-    
-    label="Nombres"
-    type="text"
-    name="firstName"
-    value={formData.firstName}
-    onChange={handleChange}
-    error={errors.firstName}
-    placeholder="Ingrese su nombre"
-    />
+          label="Nombres"
+          type="text"
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleChange}
+          error={errors.firstName}
+          placeholder="Ingrese su nombre"
+        />
 
         <InputField 
           label="Apellidos"
@@ -119,7 +107,7 @@ export default function RegisterForm() {
           onChange={handleChange}
           error={errors.lastName}
           placeholder="Ingrese su apellido"
-          />
+        />
 
         <InputField 
           label="Correo Electrónico"
@@ -129,7 +117,7 @@ export default function RegisterForm() {
           onChange={handleChange}
           error={errors.email}
           placeholder="Ingrese su correo electrónico"
-          />
+        />
 
         <InputField 
           label="Número de Identificación"
@@ -139,7 +127,7 @@ export default function RegisterForm() {
           onChange={handleChange}
           error={errors.idNumber}
           placeholder="Ingrese su número de identificación"
-          />
+        />
 
         <InputField 
           label="Carrera Académica"
@@ -149,7 +137,7 @@ export default function RegisterForm() {
           onChange={handleChange}
           error={errors.career}
           placeholder="Ingrese su carrera"
-          />
+        />
 
         <div className="mb-2">
           <label htmlFor="birthDate" className="block text-sm font-medium text-gray-700">Fecha de Nacimiento</label>
@@ -160,7 +148,7 @@ export default function RegisterForm() {
             value={formData.birthDate}
             onChange={handleChange}
             className="w-full mt-2 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-            />
+          />
           {errors.birthDate && <FormError errorMessage={errors.birthDate} />}
         </div>
 
@@ -172,12 +160,12 @@ export default function RegisterForm() {
           onChange={handleChange}
           error={errors.password}
           placeholder="Ingrese su contraseña"
-          />
+        />
 
         <button
           type="submit"
           className="w-full py-1 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-          >
+        >
           Registrar
         </button>
       </form>
@@ -192,7 +180,7 @@ export default function RegisterForm() {
               <button
                 onClick={closeModal}
                 className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
-                >
+              >
                 Cerrar
               </button>
             </div>
@@ -208,18 +196,16 @@ export default function RegisterForm() {
             <p className="mt-2 text-center text-gray-700">Estudiante Registrado Correctamente</p>
             <div className="flex justify-center mt-4">
               <button
+                
                 onClick={closeSuccessModal}
                 className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                >
-                Cerrar
+              >
+                <Link href="/account/login" className="text-gray-300 hover:text-white">Cerrar</Link>
               </button>
             </div>
           </div>
         </div>
       )}
     </div>
-      </div>
-      </>
-      
   );
 }

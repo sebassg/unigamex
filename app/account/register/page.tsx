@@ -1,9 +1,9 @@
-import RegisterForm from "@/app/ui/register/RegisterForm";
+import Register from "@/app/ui/register/Register";
 
 export default function PageRegister() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <RegisterForm />
+      <Register></Register>
 
     </div>
     

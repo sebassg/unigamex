@@ -91,8 +91,8 @@ export default function ParticipantsBySport() {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-50 p-6">
-      <h1 className="text-2xl font-bold text-gray-800 mb-4">
-        Lista de Participantes por Deporte
+      <h1 className="text-2xl mt-8 font-bold text-gray-800 mb-4">
+        Reporte de Estudiantes por Deporte
       </h1>
 
       {sports.length > 0 ? (
@@ -103,7 +103,7 @@ export default function ParticipantsBySport() {
             </label>
             <select
               id="sportSelect"
-              className="ml-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="ml-2 p-2 w-[20rem] border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               onChange={(e) => handleSportChange(e.target.value)}
             >
               {sports.map((sport) => (
@@ -114,24 +114,8 @@ export default function ParticipantsBySport() {
             </select>
           </div>
 
-          <div className="flex items-center mb-6">
-            <input
-              type="text"
-              className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Nuevo nombre del deporte"
-              value={newSportName}
-              onChange={handleNewSportNameChange}
-            />
-            <button
-              className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-              onClick={handleUpdateSportName}
-            >
-              Enviar
-            </button>
-          </div>
-
           {selectedSport && participants.length > 0 ? (
-            <table className="table-auto border-collapse border border-gray-200 w-full max-w-4xl bg-white shadow-md rounded-lg">
+            <table className="table-auto border-collapse mt-8 border border-gray-200 w-full max-w-4xl bg-white shadow-md rounded-lg">
               <thead>
                 <tr className="bg-gray-100">
                   <th className="border border-gray-200 px-4 py-2 text-left">Nombre</th>
