@@ -92,18 +92,18 @@ export default function RegisterSportForm() {
             {errors.sportName && <p className="text-red-500 text-xs mt-1">{errors.sportName}</p>}
           </div>
 
-          <div className="mb-4">
-            <label htmlFor="category" className="block text-sm font-medium text-gray-700">Categoría</label>
-            <select 
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              className="w-full mt-2 p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-            >
-              <option value="Individual">Individual</option>
-              <option value="En equipo">En equipo</option>
-            </select>
-          </div>
+            <div className="mb-4">
+              <label htmlFor="category" className="block text-sm font-medium text-gray-700">Categoría</label>
+              <select 
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                className="w-full mt-2 p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="Individual">Individual</option>
+                <option value="En equipo">En equipo</option>
+              </select>
+            </div>
 
           <div className="mb-4">
             <label htmlFor="maxParticipants" className="block text-sm font-medium text-gray-700">Número máximo de participantes</label>
