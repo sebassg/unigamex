@@ -15,4 +15,5 @@ export const sportSchema = z.object({
     .min(2, { message: 'El número máximo de participantes debe ser mayor a 0' }),
 
   status: z.enum(['Activo', 'Inactivo'], { message: 'El estado debe ser "Activo" o "Inactivo"' }),
+  
 });

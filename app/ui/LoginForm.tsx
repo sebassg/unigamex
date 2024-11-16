@@ -40,7 +40,7 @@ export default function LoginForm() {
       return;
     }
 
-    // Comparar la contraseña ingresada con el hash almacenado
+  
     const isPasswordValid = await bcrypt.compare(formData.password, user.password);
     if (!isPasswordValid) {
       setError('Contraseña incorrecta');

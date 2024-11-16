@@ -9,9 +9,19 @@ const Sidebar: React.FC = () => {
           UniGameX
         </h2>
         <ul>
+        <li className="mb-4">
+            <Link href="/auth/requisitos-inscripcion" className="text-gray-300 hover:text-white">
+              Requisitos de inscripcion
+            </Link>
+          </li>
           <li className="mb-4">
             <Link href="/auth/home" className="text-gray-300 hover:text-white">
-              Inicio
+              Deportes
+            </Link>
+          </li>
+          <li className="mb-4">
+            <Link href="/auth/student" className="text-gray-300 hover:text-white">
+              Estudiantes
             </Link>
           </li>
           <li className="mb-4">
@@ -19,16 +29,8 @@ const Sidebar: React.FC = () => {
               Registrarse a un deporte 
             </Link>
           </li>
-          <li className="mb-4">
-            <Link href="/auth/register-sport" className="text-gray-300 hover:text-white">
-              Registrar un deporte
-            </Link>
-          </li>
-          <li className="mb-4">
-            <Link href="/auth/register-estudiante" className="text-gray-300 hover:text-white">
-              Registrar un estudiante
-            </Link>
-          </li>
+          
+          
         </ul>
 
         <div className="mt-auto flex justify-center">
