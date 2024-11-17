@@ -1,10 +1,14 @@
-import {  poppins } from "./ui/fonts";
+'use client';
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  return (
-   <>
-   <h1 className= { `${poppins.className}` } >hola mundo</h1>
-   </>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/account/login'); 
+  }, [router]);
+
+  return null;
 }

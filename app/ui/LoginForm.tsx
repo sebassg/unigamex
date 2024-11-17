@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import bcrypt from 'bcryptjs';  
-import jwt from 'jwt-simple';  
+import bcrypt from 'bcryptjs';
+import jwt from 'jwt-simple';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function LoginForm() {
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ export default function LoginForm() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setError('');  
+    setError('');
 
     const storedUsers = localStorage.getItem('users');
     if (!storedUsers) {
@@ -40,22 +41,20 @@ export default function LoginForm() {
       return;
     }
 
-  
     const isPasswordValid = await bcrypt.compare(formData.password, user.password);
     if (!isPasswordValid) {
       setError('Contraseña incorrecta');
       return;
     }
 
-    
-    const payload = { email: user.email, id: user.idNumber };  
-    const secret = 'sasa"#$%&/(/&%$#"#$%&/()(/&%$#"#$%&/(duwidnj&%$#"#$%&/(dwbdh"#$%&chye#$%&/hcey#$%&/cbg#$%&/bce';  
-    const token = jwt.encode(payload, secret);  
-    
+    const payload = { email: user.email, id: user.idNumber };
+    const secret = 'sasa"#$%&/(/&%$#"#$%&/()(/&%$#"#$%&/(duwidnj&%$#"#$%&/(dwbdh"#$%&chye#$%&/hcey#$%&/cbg#$%&/bce';
+    const token = jwt.encode(payload, secret);
+
     localStorage.setItem('authToken', token);
 
     console.log('Inicio de sesión exitoso');
-    router.push('/auth/home'); 
+    router.push('/auth/home');
   };
 
   return (
@@ -99,6 +98,15 @@ export default function LoginForm() {
             Iniciar sesión
           </button>
         </form>
+
+        <div className="text-center mt-4">
+          <p className="text-sm text-gray-600">
+            ¿No tienes una cuenta?{' '}
+            <Link href="/account/register">
+              Regístrate
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
