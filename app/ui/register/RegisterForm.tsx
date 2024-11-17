@@ -17,7 +17,7 @@ export default function RegisterForm() {
     lastName: '',
     email: '',
     idNumber: '',
-    career: '',
+    career: '',             
     birthDate: '',
     password: '',
   });
@@ -25,7 +25,7 @@ export default function RegisterForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [idError, setIdError] = useState<string>(''); 
   const [isModalOpen, setIsModalOpen] = useState(false); 
-  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);  // Nuevo estado para el modal de éxito
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false); 
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -55,7 +55,7 @@ export default function RegisterForm() {
 
       console.log('Formulario enviado con éxito:', formData);
       setIdError('');
-      setIsSuccessModalOpen(true);  // Mostrar el modal de éxito
+      setIsSuccessModalOpen(true);  
     } catch (error) {
       if (error instanceof z.ZodError) {
         const formattedErrors: FormErrors = {};
@@ -81,7 +81,7 @@ export default function RegisterForm() {
 
   const closeSuccessModal = () => {
     setIsSuccessModalOpen(false);
-    // Reset form or redirect if needed
+   
   };
 
   return (

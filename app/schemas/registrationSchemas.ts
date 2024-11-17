@@ -4,7 +4,7 @@ export const registrationSchema = z.object({
   firstName: z.string().min(1, 'El nombre es obligatorio').max(50, 'El nombre no puede superar los 50 caracteres').regex(/^[a-zA-Z]+$/, 'El nombre solo puede contener letras'),
   lastName: z.string().min(1, 'El apellido es obligatorio').max(50, 'El apellido no puede superar los 50 caracteres').regex(/^[a-zA-Z]+$/, 'El apellido solo puede contener letras'),
   email: z.string().email('Por favor, ingrese un correo electrónico válido'),
-  idNumber: z.string().length(10, 'El número de identificación debe tener 10 dígitos').regex(/^\d{10}$/, 'El número de identificación solo debe contener números'),
+  idNumber: z.string().regex(/^\d+$/, 'El número de identificación solo debe contener números'), 
   career: z.string().max(100, 'La carrera no puede superar los 100 caracteres'),
   birthDate: z.string().refine(date => {
     const birthDate = new Date(date);

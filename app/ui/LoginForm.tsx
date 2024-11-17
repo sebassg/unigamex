@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from 'react';
 import bcrypt from 'bcryptjs';  
-import jwt from 'jwt-simple';  // Usamos jwt-simple
+import jwt from 'jwt-simple';  
 import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
@@ -24,7 +24,7 @@ export default function LoginForm() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setError('');  // Limpiar errores previos
+    setError('');  
 
     const storedUsers = localStorage.getItem('users');
     if (!storedUsers) {

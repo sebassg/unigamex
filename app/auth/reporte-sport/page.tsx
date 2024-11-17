@@ -1,4 +1,4 @@
-import ParticipantsBySport from "@/app/ui/ParticipantsTable";
+import ParticipantsBySport from "@/app/ui/ParticipantsBySport";
 export default function PageReporteSport() {
   return (
     <>

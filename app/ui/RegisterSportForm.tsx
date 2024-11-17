@@ -53,7 +53,7 @@ export default function RegisterSportForm() {
         participants: [],
       });
 
-      setIsSuccess(true); // Muestra el mensaje de éxito
+      setIsSuccess(true); 
     } catch (error) {
       if (error instanceof z.ZodError) {
         const formattedErrors: Errors = {};

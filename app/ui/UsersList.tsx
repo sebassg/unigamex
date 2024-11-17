@@ -11,7 +11,7 @@ type User = {
   email: string;
 };
 
-export default function UsersList() {
+export default function   UsersList() {
   const [users, setUsers] = useState<User[]>([]);
   const [showForm, setShowForm] = useState(false);
 
@@ -27,14 +27,6 @@ export default function UsersList() {
     setShowForm(true);
   };
 
-  const handleFormClose = () => {
-    setShowForm(false);
-    // Al cerrar el formulario, se vuelve a cargar la lista de usuarios
-    const storedUsers = typeof window !== 'undefined' ? localStorage.getItem('users') : null;
-    if (storedUsers) {
-      setUsers(JSON.parse(storedUsers));
-    }
-  };
 
   const calculateAge = (birthDate: string): number => {
     const birth = new Date(birthDate);

@@ -22,7 +22,7 @@ export default function ParticipantsBySport() {
   const [sports, setSports] = useState<Sport[]>([]);
   const [selectedSport, setSelectedSport] = useState<Sport | null>(null);
   const [participants, setParticipants] = useState<User[]>([]);
-  const [newSportName, setNewSportName] = useState<string>('');
+  
 
   useEffect(() => {
     const storedSports = localStorage.getItem('sports');
@@ -64,31 +64,7 @@ export default function ParticipantsBySport() {
     }
   };
 
-  const handleNewSportNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewSportName(event.target.value);
-  };
-
-  const handleUpdateSportName = () => {
-    if (selectedSport && newSportName) {
-      const updatedSports = sports.map((sport) =>
-        sport.sportName === selectedSport.sportName
-          ? { ...sport, sportName: newSportName }
-          : sport
-      );
-
-      localStorage.setItem('sports', JSON.stringify(updatedSports));
-      setSports(updatedSports);
-
-      // Actualiza el deporte seleccionado y sus participantes
-      const updatedSport = updatedSports.find((sport) => sport.sportName === newSportName);
-      if (updatedSport) {
-        setSelectedSport(updatedSport);
-        handleSportChange(newSportName);
-      }
-      setNewSportName(''); // Limpia el campo de entrada
-    }
-  };
-
+ 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-50 p-6">
       <h1 className="text-2xl mt-8 font-bold text-gray-800 mb-4">

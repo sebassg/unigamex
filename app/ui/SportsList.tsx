@@ -29,7 +29,7 @@ export default function SportsList() {
 
   const handleFormClose = () => {
     setShowForm(false);
-    // Actualiza la lista de deportes después de registrar uno nuevo
+   
     const storedSports = typeof window !== 'undefined' ? localStorage.getItem('sports') : null;
     if (storedSports) {
       const parsedSports: Sport[] = JSON.parse(storedSports);
