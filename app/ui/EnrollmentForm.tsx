@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type ValidationCriteria = {
   isEnrolled: boolean;
@@ -9,6 +9,7 @@ type ValidationCriteria = {
 };
 
 export default function EnrollmentForm() {
+ 
   const [criteria, setCriteria] = useState<ValidationCriteria>({
     isEnrolled: false,
     hasNoSanctions: false,
@@ -29,7 +30,6 @@ export default function EnrollmentForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-   
     localStorage.setItem('validInscripcion', JSON.stringify(criteria));
 
     console.log('Criterios actualizados:', criteria);
@@ -37,10 +37,23 @@ export default function EnrollmentForm() {
     setShowModal(true);
   };
 
+  const getData = () => {
+    const storedData = localStorage.getItem('validInscripcion');
+    if (storedData) {
+      const parsedData = JSON.parse(storedData) as ValidationCriteria;
+      
+      setCriteria(parsedData); // Actualiza el estado con los datos recuperados
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <div >
+    <div>
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
-        <h1 className="text-2xl font-bold text-gray-800 mb-6">Formulario de Inscripción</h1>
+        <h1 className="text-2xl font-bold text-gray-800 mb-6">Requisitos de Inscripción</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="inline-flex items-center">
