@@ -36,11 +36,20 @@ export default function RegisterForm() {
       const storedUsers = localStorage.getItem('users');
       const users = storedUsers ? JSON.parse(storedUsers) : [];
 
-      const existingUser = users.find((user: { idNumber: string }) => user.idNumber === formData.idNumber);
-      if (existingUser) {
+      const existingUserById = users.find((user: { idNumber: string }) => user.idNumber === formData.idNumber);
+      if (existingUserById) {
         setIdError('Ya existe un usuario con ese número de identificación');
         setIsModalOpen(true); 
         return; 
+      }
+
+      const existingUserByEmail = users.find((user: { email: string }) => user.email === formData.email);
+      if (existingUserByEmail) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          email: 'Ya existe un usuario con ese correo electrónico',
+        }));
+        return;
       }
 
       const hashedPassword = await bcrypt.hash(formData.password, 10);
