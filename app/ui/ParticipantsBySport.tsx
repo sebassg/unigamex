@@ -31,8 +31,7 @@ export default function ParticipantsBySport() {
 
     if (storedSports && storedUsers) {
       const sportsData: Sport[] = JSON.parse(storedSports);
-      const usersData: User[] = JSON.parse(storedUsers);
-
+     
       setSports(sportsData);
     }
   }, []);
